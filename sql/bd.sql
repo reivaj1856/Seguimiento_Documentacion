@@ -24,6 +24,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`hoja_ruta` (
   `salida` DATETIME NULL,
   `estado` ENUM('en proceso','archivado','retrasado') NULL,
   `observacion` TEXT NULL,
+  `plazo` INT NOT NULL DEFAULT 30,
   PRIMARY KEY (`idhoja_ruta`)
 ) ENGINE = InnoDB;
 

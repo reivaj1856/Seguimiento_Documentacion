@@ -1,7 +1,7 @@
 <?php
 // Conexión PDO centralizada
 $DB_HOST = getenv('DB_HOST') ?: '127.0.0.1';
-$DB_NAME = getenv('DB_NAME') ?: 'mydb';
+$DB_NAME = getenv('DB_NAME') ?: 'examen';
 $DB_USER = getenv('DB_USER') ?: 'root';
 $DB_PASS = getenv('DB_PASS') ?: '';
 

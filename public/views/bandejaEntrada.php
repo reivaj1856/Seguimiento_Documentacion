@@ -105,7 +105,9 @@ function filters_except($except = []) {
 		<tbody>
 		<?php if (empty($documentos)): ?>
 			<tr>
-				<td colspan="5" class="px-4 py-6 text-center text-gray-500">No se encontraron documentos asignados en tu bandeja de entrada.</td>
+				<td colspan="5" class="px-4 py-6 text-center text-gray-500">
+					<?= empty($nro_hoja_ruta) ? 'No tiene documentos en su bandeja de entrada.' : 'No se encontraron documentos para la consulta ingresada.' ?>
+				</td>
 			</tr>
 		<?php else: ?>
 			<?php $i = 0; foreach ($documentos as $doc): $i++; ?>

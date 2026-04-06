@@ -1,9 +1,9 @@
 <?php
 session_start();
 if (!isset($_SESSION['role'])) {
-    header('Location: public/views/login.php');
+    header('Location: public/views/dashboard.php');
     exit();
-}
+}   
 $role = $_SESSION['role'];
 $userid = $_SESSION['userid'];
 ?>

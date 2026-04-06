@@ -20,7 +20,7 @@ $offset = ($page-1)*$per_page;
 // ==== Llamada al procedimiento filtrado ====
 // Solo ejecutar si hay un número de hoja de ruta para buscar
 $all_documentos = [];
-if ($nro_hoja_ruta && trim($nro_hoja_ruta) !== '') {
+if (($nro_hoja_ruta && trim($nro_hoja_ruta) !== '') || ($idUsuario !== null && $idUsuario !== '')) {
     $stmt = $pdo->prepare(
         "CALL sp_documentos_ejecutivos_filtrado(:fecha_desde, :fecha_hasta, :estado, :tipo_correspondencia, :idUnidad, :nro_hoja_ruta, :idUsuario)"
     );
@@ -31,8 +31,8 @@ if ($nro_hoja_ruta && trim($nro_hoja_ruta) !== '') {
         ':estado'              => null,
         ':tipo_correspondencia'=> null,
         ':idUnidad'            => null,
-        ':nro_hoja_ruta'       => $nro_hoja_ruta,
-        ':idUsuario'           => null
+        ':nro_hoja_ruta'       => ($nro_hoja_ruta && trim($nro_hoja_ruta) !== '') ? $nro_hoja_ruta : null,
+        ':idUsuario'           => ($idUsuario !== null && $idUsuario !== '') ? $idUsuario : null
     ]);
     $all_documentos = $stmt->fetchAll(PDO::FETCH_ASSOC);
     $stmt->closeCursor();
@@ -242,7 +242,9 @@ function buscarHojaRutaTop() {
         return;
     }
     
-    window.location.href = 'reportes.php?nro_hoja_ruta=' + encodeURIComponent(nroHojaRuta);
+    const url = new URL(window.location.href);
+    url.searchParams.set('nro_hoja_ruta', nroHojaRuta);
+    window.location.href = url.toString();
 }
 
 // Función para imprimir hoja de ruta
